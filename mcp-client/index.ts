@@ -40,8 +40,6 @@ class MCPClientClass {
   }
 
   async processQuery(query: string) {
-    console.log('\nProcessing query...' + query)
-
     this.mcp.clearConversationHistory()
 
     const response = await this.mcp.run(query)
