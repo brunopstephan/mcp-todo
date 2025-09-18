@@ -34,10 +34,16 @@ class MCPClientClass {
       llm: this.llm,
       client,
       maxSteps: 20,
+      systemPrompt:
+        "You are an agent to deal with the user's tasks. Just do what the user asks you to do. Use the tools as needed, but don't do more actions than necessary to complete the user's query. Be concise.",
     })
   }
 
   async processQuery(query: string) {
+    console.log('\nProcessing query...' + query)
+
+    this.mcp.clearConversationHistory()
+
     const response = await this.mcp.run(query)
 
     return JSON.parse(JSON.stringify(response, null, 2))[0].text
